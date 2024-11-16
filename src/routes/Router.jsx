@@ -9,14 +9,16 @@ const Router = createBrowserRouter([
     element: <HomeLayout></HomeLayout>,
     children:[
         {
-            path:'' ,
-            element: <Navigate to={"category/01"}></Navigate>,
+            path:'/' ,
+            element: <Navigate to={"/category/01"}></Navigate>,
         },
 
         {
             path: "/category/:id",
-            element: <CategoryNews></CategoryNews> ,
-            loader:({params}) => fetch(`https://openapi.programming-hero.com/api/news/category/${params.id}`),
+            element: <CategoryNews></CategoryNews>,
+            loader:({params}) => fetch(
+                `https://openapi.programming-hero.com/api/news/category/${params.id}`
+            ),
         },
     ],
 },
