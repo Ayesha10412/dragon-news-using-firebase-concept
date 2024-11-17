@@ -20,7 +20,14 @@ const {user, logOut} = useContext(AuthContext);
 
 <div className="login flex items-center gap-2">
 <div>
-<img src={userImg} alt="" />
+{
+  user &&  user?.email ? (<div className='flex flex-col gap-1 items-center '>
+  <div className='w-[100px] '>   <img className='w-full h-[100px] rounded-full' src={user?.photoURL} alt="" /></div>
+    <p className='font-bold text-blue-600'>{user.displayName} </p>
+     </div> ) : (<div> <img src={userImg} alt="" /></div> )
+}
+
+
 </div>
 {
     user && user?.email ? 

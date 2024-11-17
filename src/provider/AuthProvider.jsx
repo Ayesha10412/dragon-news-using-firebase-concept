@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { useLocation } from "react-router-dom";
 
@@ -30,6 +30,9 @@ const logOut = ()=>{
     return signOut(auth);
 };
 
+const updateUserProfile = (updatedData)=>{
+    return updateProfile(auth.currentUser, updatedData) ;
+}
 
 const authInfo = {
     user,
@@ -38,6 +41,7 @@ const authInfo = {
     userLogin,
     logOut,
     loading,
+    updateUserProfile,
 
 };
 

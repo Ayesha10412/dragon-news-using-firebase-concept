@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
-const {createNewUser,setUser}= useContext(AuthContext)
+const {createNewUser,setUser, updateUserProfile}= useContext(AuthContext)
 const [error, setError] = useState({});
+const navigate = useNavigate();
 
 const handleSubmit = event=>{
     event.preventDefault();
@@ -24,6 +26,14 @@ createNewUser(email, password)
     const user = result.user;
     setUser(user)
     console.log(user)
+    updateUserProfile({displayName: name, photoURL: photo })
+    .then(()=>{
+navigate('/')
+    })
+.catch(err=>{
+    console.log('ERROR:', err.message)
+})
+    
 })
 
 .catch(error=>{
